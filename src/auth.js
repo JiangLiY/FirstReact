@@ -17,8 +17,6 @@ class AuthCheck extends React.Component {
         return info
       }} />
     )
-
-
   }
 }
 

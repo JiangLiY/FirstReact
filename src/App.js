@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 // 导入组件库的样式
 import 'semantic-ui-css/semantic.min.css'
+// 导入外界字体图标的样式
+import './assets/fonts/iconfont.css'
 // 导入相关路由配置组件
 import { BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 
