@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+// 导入组件库的样式
+import 'semantic-ui-css/semantic.min.css'
+// 导入相关路由配置组件
+import { BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+
+// 导入验证是否已登录的组件
+import AuthCheck from './auth'
+import Login from './login';
+import Main from './module/main';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <AuthCheck path="/home" component={Main} />
+          <Redirect to="/" />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
