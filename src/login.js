@@ -43,7 +43,7 @@ class Login extends React.Component {
       pwd: this.state.password
     });
     // console.log(ret)
-    sessionStorage.setItem('mytoken',ret.data.data.token)
+    sessionStorage.setItem('mytoken',ret.data.token)
     // 跳到主页面
     let {history} = this.props
     history.push('/home')

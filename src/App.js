@@ -12,6 +12,29 @@ import AuthCheck from './auth'
 import Login from './login';
 import Main from './module/main';
 
+// 导入公共组件
+import {baseURL} from './common'
+// 导入axios 
+import axios from 'axios'
+// 配置axios的基准路径
+axios.defaults.baseURL = baseURL
+
+//axios请求拦截器统一处理接口的token
+axios.interceptors.request.use(function (config) {
+  if(!config.url.endsWith('/')) {
+    config.headers.Authorization = sessionStorage.getItem('mytoken')
+  }
+  return config
+},function(error) {
+  return Promise.reject(error)
+})
+// axios响应拦截器
+axios.interceptors.response.use(function (response) {
+  // response是axios包装之后的数据
+  return response.data
+},function(error) {
+  return Promise.reject(error)
+})
 class App extends Component {
   render() {
     return (
