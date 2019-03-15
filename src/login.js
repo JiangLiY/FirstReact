@@ -44,6 +44,7 @@ class Login extends React.Component {
     });
     // console.log(ret)
     sessionStorage.setItem('mytoken',ret.data.token)
+    sessionStorage.setItem('uid',ret.data.uid)
     // 跳到主页面
     let {history} = this.props
     history.push('/home')

@@ -267,4 +267,7 @@
   width: 100%;
   margin-top: 10px;
 }
+.main-container .ui .row {
+  padding-bottom: 0
+}
 

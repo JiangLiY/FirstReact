@@ -9,12 +9,44 @@ import ImageGallery from 'react-image-gallery';
 // 导入轮播图样式
 import 'react-image-gallery/styles/css/image-gallery.css'
  
+// 导入路由相关组件
+import {withRouter} from 'react-router-dom'
+
 // 封装菜单组件
 function Menu(props) {
-  let {menuData} = props
+  let {menuData, history} = props
+  let handleMenu = (p, e) => {
+    // 根据不同的菜单跳转不同的位置
+    // 通过withRouter提供的history对象进行跳转
+    // history.push('/')
+    switch(p) {
+      case '二手房':
+        // 跳转到房源列表页
+        history.push('/home/list',{query: {mname: p, type: 1}})
+        break;
+      case '新房':
+        history.push('/home/list',{query: {mname: p, type: 2}})
+        break;
+      case '租房':
+        history.push('/home/list',{query: {mname: p, type: 3}})
+        break;
+      case '海外':
+        history.push('/home/list',{query: {mname: p, type: 4}})
+        break;
+      case '计算器':
+        history.push('/home/calc',{query: {mname: p}})
+        break;
+      case '地图找房':
+        history.push('/home/map',{query: {mname: p}})
+        break;
+      default:
+        console.log('other')
+        break;
+    }
+  }
   let menuInfo = menuData.map(item => {
     return (
-      <Grid.Column key={item.id}>
+      <Grid.Column onClick={handleMenu.bind(this,item.menu_name)} key={item.id}>
         <div className='home-menu-item'>
           <Icon name='home' size='big' />
         </div>
@@ -169,7 +201,7 @@ class Home extends React.Component {
       // })
       // 这个返回值是实际的数据，该数据传递给下一个then
       // 如果在then中返回具体的数据，那么在下一个then中可以获取该数据
-      console.log(res.data.list)
+      // console.log(res.data.list)
       return res.data.list
     })
   }
@@ -199,6 +231,8 @@ class Home extends React.Component {
   }
 
   render () {
+    // 该history对象是withRouter提供的
+    let {history} = this.props
     return (
       <div className="home-container">
         {/*搜索条*/}
@@ -222,7 +256,7 @@ class Home extends React.Component {
           </div>
           {/*菜单*/}
           <div>
-            <Menu menuData={this.state.menu} />
+            <Menu history={history} menuData={this.state.menu} />
           </div>
           {/*资讯*/}
           <div>
@@ -242,4 +276,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+export default withRouter(Home)

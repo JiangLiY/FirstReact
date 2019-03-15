@@ -8,6 +8,9 @@ import Home from './home/index'
 import Info from './info/index'
 import Chat from './chat/index'
 import My from './my/index'
+import HouseList from './home/houseList'
+import Calculator from './home/calculator'
+import MyMap from './home/map'
 
 // 自定义链接的样式
 function Menu(props) {
@@ -40,6 +43,9 @@ function Menu(props) {
             <Route path="/home/info" component={Info} />
             <Route path="/home/chat" component={Chat} />
             <Route path="/home/my" component={My} />
+            <Route path="/home/list" component={HouseList} />
+            <Route path='/home/calc' component={Calculator} />
+            <Route path='/home/map' component={MyMap}/>
           </Switch>
         </div>
         <div className="main-menu">
